@@ -1,13 +1,20 @@
 package com.sist.main;
 import java.util.*;
 
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.sist.dao.*;
 public class MainClass {
 
+	
 	public static void main(String[] args) {
+		
+	}
+	@Test
+	public void display()
+	{
 		// TODO Auto-generated method stub
         ApplicationContext app=
         	new ClassPathXmlApplicationContext("app.xml");
@@ -53,5 +60,6 @@ public class MainClass {
         	System.out.println(cvo.getCno()+"."+cvo.getTitle());
         }
 	}
+	
 
 }
