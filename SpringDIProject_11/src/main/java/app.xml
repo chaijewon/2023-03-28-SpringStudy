@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
+    <!-- 사용자 정의 클래스 메모리 할당 요청 -->
+    <context:component-scan base-package="com.sist.*"/>
+    <!-- 
+       @Component, @Repository, @Service, 
+       @Controller, @RestController, @ControllerAdvice, 
+       @Configuration
+     -->
+    <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource"
+      p:driverClassName="oracle.jdbc.driver.OracleDriver"
+      p:url="jdbc:oracle:thin:@localhost:1521:XE"
+      p:username="hr"
+      p:password="happy"
+    />
+    <!-- MyBatis -->
+    <bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean"
+      p:dataSource-ref="ds"
+    />
+    <mybatis-spring:scan base-package="com.sist.mapper" factory-ref="ssf"/>
+
+</beans>
