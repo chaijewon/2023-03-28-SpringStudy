@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+    <!-- AOP등록 -->
+    <aop:aspectj-autoproxy/>
+    <!-- 사용자 정의 클래스 등록 -->
+    <context:component-scan base-package="com.sist.*"/>
+    <!-- 
+           패키지 등록 : 모든 클래스를 메모리 할당 
+           ** 선별 (스프링에서 관리할 클래스)
+           1) Model : HandlerMapping에 의해서 찾기 => 스프링에서 메모리 할당 요청 
+           2) DAO , Service 
+           3) 일반 클래스 : 크롤링 , OpenAPI...
+           
+           => @Component, => 크롤링 , OpenAPI
+              @Repository, => DAO
+              @Service,  => Service 
+              @Controller, => Model 
+              @RestController, => Model
+              @ControllerAdvice, => 공통 예외처리 (@Controller)
+              @ResrControllerAdvice, => 공통 예외처리 (@RestController)
+              @Configuration => XML대신 환경 설정 
+              
+           => 어노테이션과 XML에 등록 할 수 없다 
+              => 두개씩 생성 
+              => 어노테이션 : 사용자 정의 클래스 
+              => XML : 라이브러리 (어노테이션이 없다)
+             ==================================
+             어노테이션 이용시에 DI도 어노테이션을 이용한다.
+             @Autowired, => 자동 객체 주소 주입 (스프링이 해당 객체를 찾아서 주소값을 주입)
+             @PostConstruct, => init-method (객체 생성시 자동호출하는 메소드 지정)
+             @PreDestroy,  => destory-method (객체 소멸시에 자동 호출되는 메소드 지정)
+             @Resource => 특정 객체를 찾는 경우 (ID를 설정해서 객체를 찾는다)
+              @Resource(name="dao") : 단점 JDK1.8까지만 사용이 가능 (이후 버전에서는 사용이 불가능)
+     -->
+    <!-- ViewResolver(JSP찾기) : 경로명 , 확장자 -->
+    <!-- 
+        return "main/main";
+     -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+        p:prefix="/"
+        p:suffix=".jsp"
+    />
+    <!-- 
+          /main/main.jsp
+     -->
+     <!-- 
+        multipartResolver(id는 지정되어 있다)
+        파일 업로드 : cos.jar
+        => 여러개 동시에 업로드가 가능 
+      -->
+     <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+     />
+</beans>
