@@ -12,6 +12,18 @@
     <!-- AOP등록 -->
     <aop:aspectj-autoproxy/>
     <!-- 사용자 정의 클래스 등록 -->
+    <mvc:annotation-driven>
+	    <mvc:message-converters>
+	        <!-- @ResponseBody로 String 처리할때 한글처리 -->
+	        <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+	            <property name="supportedMediaTypes">
+	                <list>
+	                    <value>text/html;charset=UTF-8</value>
+	                </list>
+	            </property>
+	        </bean>
+	    </mvc:message-converters>
+	</mvc:annotation-driven>
     <context:component-scan base-package="com.sist.*"/>
     <!-- 
            패키지 등록 : 모든 클래스를 메모리 할당 
