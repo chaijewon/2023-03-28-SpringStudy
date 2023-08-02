@@ -17,6 +17,7 @@ public class MainController {
 	   List<CategoryVO> cList=service.foodCategoryData();
 	   model.addAttribute("cList", cList);
 	   model.addAttribute("main_jsp", "home.jsp");
+	  
 	   return "main/main";
    }
 }

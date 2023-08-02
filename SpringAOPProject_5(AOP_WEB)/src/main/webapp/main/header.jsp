@@ -32,7 +32,7 @@
           <li><a href="pages/full-width.html">맛집 추천</a></li>
         </ul>
       </li>
-      <li><a href="#">답변형 게시판</a></li>
+      <li><a href="../board/list.do">답변형 게시판</a></li>
     </ul>
     </nav>
 </div>

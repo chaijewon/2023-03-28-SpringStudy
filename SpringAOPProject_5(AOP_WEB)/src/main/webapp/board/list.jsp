@@ -8,9 +8,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
-.container{
-   margin-top: 50px;
-}
 .row {
   margin: 0px auto;
   width:800px;
@@ -18,10 +15,11 @@
 </style>
 </head>
 <body>
-  <div class="container">
-    <h1 class="text-center">스프링 게시판</h1>
-    <div class="row">
-      <table class="table">
+<div class="wrapper row3">
+  <main class="container clear">
+  <div class="row">
+   <h2 class="sectiontitle">답변형 게시판</h2>
+   <table class="table">
         <tr>
           <td>
            <a href="insert.do" class="btn btn-sm btn-danger">새글</a>
@@ -29,7 +27,7 @@
         </tr>
       </table>
       <table class="table">
-       <tr class="success">
+       <tr>
          <th width="10%" class="text-center">번호</th>
          <th width="45%" class="text-center">제목</th>
          <th width="15%" class="text-center">이름</th>
@@ -40,8 +38,13 @@
          <tr>
            <td width="10%" class="text-center">${vo.no }</td>
            <td width="45%">
-             
-             <a href="detail.do?no=${vo.no }">${vo.subject }</a>
+             <c:if test="${vo.group_tab>0 }">
+               <c:forEach var="i" begin="1" end="${vo.group_tab }">
+                 &nbsp;&nbsp;
+               </c:forEach>
+               <img src="../board/re_icon.png">
+             </c:if>
+             <a href="../board/detail.do?no=${vo.no }">${vo.subject }</a>
            </td>
            <td width="15%" class="text-center">${vo.name }</td>
            <td width="20%" class="text-center">${vo.dbday }</td>
@@ -52,7 +55,7 @@
       <table class="table">
         <tr>
           <td class="text-left">
-          <form method="post" action="find.do">
+          <form method="post" action="find.do" class="inline">
            Search:<input type="checkbox" name="fs" value="name">이름
              <input type="checkbox" name="fs" value="subject">제목
              <input type="checkbox" name="fs" value="content">내용
@@ -67,7 +70,8 @@
           </td>
         </tr>
       </table>
-    </div>
   </div>
+  </main>
+</div>
 </body>
 </html>
