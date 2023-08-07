@@ -18,7 +18,6 @@ public class FoodDAO {
 		  +"FROM (SELECT fno,name,poster,score "
 		  +"FROM food_location ORDER BY fno ASC)) "
 		  +"WHERE num BETWEEN #{start} AND #{end}")*/
-   
    public List<FoodLocationVO> foodListData(Map map)
    {
 	   return mapper.foodListData(map);
