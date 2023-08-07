@@ -7,6 +7,7 @@ import com.sist.vo.FoodLocationVO;
 public interface FoodMapper {
    // 목록 
 	
+	
    @Select("SELECT fno,name,poster,score,num "
 		  +"FROM (SELECT fno,name,poster,score,rownum as num "
 		  +"FROM (SELECT fno,name,poster,score "
