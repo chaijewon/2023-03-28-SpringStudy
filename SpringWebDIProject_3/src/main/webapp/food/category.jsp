@@ -35,6 +35,7 @@
 		          <p style="font-size: 9px">${vo.title }</p>
 		        </div>
 		      </a>
+		      
 		    </div>
 		  </div>
       </c:forEach>
