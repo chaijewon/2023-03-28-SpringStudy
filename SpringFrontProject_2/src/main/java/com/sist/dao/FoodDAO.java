@@ -11,7 +11,6 @@ import com.sist.vo.*;
 public class FoodDAO {
    @Autowired
    private FoodMapper mapper;
-   
 // 목록 
    /*@Select("SELECT fno,name,poster,score,num "
 		  +"FROM (SELECT fno,name,poster,score,rownum as num "
