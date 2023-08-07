@@ -10,6 +10,7 @@ import com.sist.vo.*;
 @Repository
 public class FoodDAO {
    @Autowired
+   
    private FoodMapper mapper;
 // 목록 
    /*@Select("SELECT fno,name,poster,score,num "

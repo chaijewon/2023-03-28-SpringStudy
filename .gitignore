@@ -1,8 +1,0 @@
-*/.git/*
-*/target/*
-.classpath
-.deployables
-.settings
-.git
-.project
-pom.properties
