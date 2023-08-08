@@ -41,4 +41,9 @@ public class GoodsDAO {
 		   mapper.hitIncrement(no);
 		   return mapper.goodsDetailData(no);
 	   }
+	   //@Select("SELECT CEIL(COUNT(*)/12.0) FROM goods_all")
+	   public int goodsTotalPage()
+	   {
+		   return mapper.goodsTotalPage();
+	   }
 }

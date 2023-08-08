@@ -25,6 +25,12 @@ public class GoodsServiceImpl implements GoodsService{
 		// TODO Auto-generated method stub
 		return dao.goodsDetailData(no);
 	}
+
+	@Override
+	public int goodsTotalPage() {
+		// TODO Auto-generated method stub
+		return dao.goodsTotalPage();
+	}
 	   
    
 }

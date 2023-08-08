@@ -30,4 +30,5 @@ public interface GoodsService {
 			  +"FROM goods_all "
 			  +"WHERE no=#{no}")*/
 	   public GoodsVO goodsDetailData(int no);
+	   public int goodsTotalPage();
 }
