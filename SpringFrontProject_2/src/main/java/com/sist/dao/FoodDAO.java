@@ -47,4 +47,10 @@ public class FoodDAO {
   {
 	  return mapper.foodFindData(map);
   }
+  /*@Select("SELECT CEIL(COUNT(*)/12.0) FROM food_locatio  "
+			 +"WHERE address LIKE '%'||#{address}||'%'")*/
+  public int foodFindTotalPage(String address)
+  {
+	  return mapper.foodFindTotalPage(address);
+  }
 }
