@@ -80,7 +80,7 @@
     		no:${no},
     		goods_detail:{},
     		total:0
-    	},
+    	},//
     	filters:{
             currency: function(value){
                 let num = new Number(value);
