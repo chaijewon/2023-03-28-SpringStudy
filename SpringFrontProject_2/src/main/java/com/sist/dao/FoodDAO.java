@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.sist.mapper.*;
 import com.sist.vo.*;
 @Repository
+
+
 public class FoodDAO {
    @Autowired
    
