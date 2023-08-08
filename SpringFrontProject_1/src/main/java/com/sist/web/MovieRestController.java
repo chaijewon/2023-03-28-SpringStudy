@@ -5,6 +5,7 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 @RestController
+
 public class MovieRestController {
 	private String[] urls={"","https://www.kobis.or.kr/kobis/business/main/searchMainDailyBoxOffice.do",
  		   "https://www.kobis.or.kr/kobis/business/main/searchMainRealTicket.do",
