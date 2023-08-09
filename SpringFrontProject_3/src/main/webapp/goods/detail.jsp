@@ -81,7 +81,7 @@
     		goods_detail:{},
     		total:0
     	},//
-    	filters:{
+    	fliter:{
             currency: function(value){
                 let num = new Number(value);
                 return num.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
@@ -97,6 +97,9 @@
     			this.goods_detail=response.data
     		})
     	},
+    	/* computed:{
+    		
+    	}, */
     	methods:{
     		change:function(){
     			let count=this.$refs.account.value;
