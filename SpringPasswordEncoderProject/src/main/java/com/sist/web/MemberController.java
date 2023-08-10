@@ -1,5 +1,7 @@
 package com.sist.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,5 +21,11 @@ public class MemberController {
    public String member_join()
    {
 	   return "member/join"; // join_ok => MemberRestController
+   }
+   @GetMapping("member/logout.do")
+   public String member_logout(HttpSession session)
+   {
+	   session.invalidate();
+	   return "redirect:../member/login.do";
    }
 }

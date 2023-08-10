@@ -76,10 +76,10 @@
     			}
     			
     			axios.post('../member/login_ok.do',null,{
-    				params:{
-    					id:this.id,
-    					pwd:this.pwd
-    				}
+    			   params:{
+    				   id:this.id,
+					   pwd:this.pwd
+    			   }	
     			}).then(response=>{
     				let res=response.data;
     				if(res==="NOID")
@@ -101,6 +101,7 @@
     				}
     					
     			})
+    			
     		}
     	}
     })
