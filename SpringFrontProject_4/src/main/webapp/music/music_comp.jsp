@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
 <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -12,13 +13,14 @@
 <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <style type="text/css">
 .container{
   margin-top: 50px;
 }
 .row{
   margin: 0px auto;
-  width: 900px;
+  width: 800px;
 }
 </style>
 </head>
@@ -27,13 +29,13 @@
      <h1 class="text-center">{{music_title}}</h1>
      <div class="row">
      <div class="text-center">
-      <b-button variant="outline-danger" @click="musicGetData(1)">Top100</b-button>
-      <b-button variant="outline-success" @click="musicGetData(2)">가요</b-button>
-      <b-button variant="outline-warning" @click="musicGetData(3)">POP</b-button>
-      <b-button variant="outline-info" @click="musicGetData(4)">OST</b-button>
-      <b-button variant="outline-primary" @click="musicGetData(5)">트롯</b-button>
-      <b-button variant="outline-default" @click="musicGetData(6)">JAZZ</b-button>
-      <b-button variant="outline-danger" @click="musicGetData(7)">CLASSIC</b-button>
+      <b-button variant="danger" @click="musicGetData(1)">Top100</b-button>
+      <b-button variant="success" @click="musicGetData(2)">가요</b-button>
+      <b-button variant="warning" @click="musicGetData(3)">POP</b-button>
+      <b-button variant="info" @click="musicGetData(4)">OST</b-button>
+      <b-button variant="primary" @click="musicGetData(5)">트롯</b-button>
+      <b-button variant="default" @click="musicGetData(6)">JAZZ</b-button>
+      <b-button variant="danger" @click="musicGetData(7)">CLASSIC</b-button>
      </div>
     </div>
     <div style="height: 20px"></div>
@@ -68,7 +70,7 @@
     	       +'<td>{{vo.title}}</td>'
     	       +'<td>{{vo.singer}}</td>'
     	       +'<td class="text-center">'
-    	       +'<b-button id="show-btn" variant="outline-success" @click="showMovie(vo.mno,true)">동영상</b-button>'
+    	       +'<b-button id="show-btn" variant="success" @click="showMovie(vo.mno,true)">동영상</b-button>'
     	       +'</td>'
     	       +'</tr>'
     	       +'</tbody>'

@@ -23,7 +23,7 @@ public interface FoodMapper {
 		  +"</script>"
 		 })
   public List<CategoryVO> foodCategoryListData(Map map);
-  @Select("SELECT fno,name,poster,type,phone,address "
+  @Select("SELECT fno,name,poster,type,phone,address,score "
 		 +"FROM food_house "
 		 +"WHERE cno=#{cno}")
   public List<FoodVO> foodListData(int cno);

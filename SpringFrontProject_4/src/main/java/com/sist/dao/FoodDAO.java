@@ -9,9 +9,13 @@ import com.sist.mapper.*;
 import com.sist.vo.*;
 @Repository
 public class FoodDAO {
-  @Autowired
-  private FoodMapper mapper;
   
+  private FoodMapper mapper;
+  @Autowired
+  public FoodDAO(FoodMapper mapper)
+  {
+	  this.mapper=mapper;
+  }
   /*@Select({"<script>"
 	      +"SELECT cno,title,subject,poster "
 		  +"FROM food_category "
