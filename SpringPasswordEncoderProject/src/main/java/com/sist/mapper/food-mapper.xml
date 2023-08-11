@@ -28,4 +28,9 @@
     FROM food_house
     WHERE cno=#{cno}
   </select>
+  <select id="foodDetailData" resultType="FoodVO" parameterType="int">
+    SELECT fno,name,address,phone,poster,type,time,parking,price,score,menu
+    FROM food_house
+    WHERE fno=#{fno}
+  </select>
 </mapper>

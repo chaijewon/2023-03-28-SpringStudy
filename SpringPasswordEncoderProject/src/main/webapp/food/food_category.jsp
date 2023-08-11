@@ -60,19 +60,23 @@ td{
 		<hr>
 	  </div>
 	  <div class="col-sm-5" v-show="isShow">
+	   
 	    <div class="jumbotron">
 	     <h5 class="text-center">{{cate_info.title}}</h5>
 	     <h6 class="text-center">{{cate_info.subject}}</h6>
 	    </div>
+	    <div style="overflow-y:auto;height: 500px">
 	    <table class="table">
 	      <tr>
 	       <td>
 	         <table class="table" v-for="fvo in food_list">
 	          <tr>
 	           <td width=30% class="text-center" rowspan="4">
-	             <img :src="fvo.poster" style="width:150px;height: 100px">
+	            <a :href="'../food/food_detail.do?fno='+fvo.fno">
+	             <img :src="fvo.poster" style="width:150px;height: 130px" class="img-rounded">
+	            </a>
 	           </td>
-	           <td width=70%><h6>{{fvo.name}}&nbsp;<span style="color:orange">{{fvo.score}}</span></h6></td>
+	           <td width=70%><h6><a :href="'../food/food_detail.do?fno='+fvo.fno">{{fvo.name}}</a>&nbsp;<span style="color:orange">{{fvo.score}}</span></h6></td>
 	          </tr>
 	          <tr>
 	            <td width=70%>{{fvo.address}}</td>
@@ -87,6 +91,7 @@ td{
 	       </td>
 	      </tr>
 	    </table>
+	    </div>
 	  </div>
     </div>
   </div>

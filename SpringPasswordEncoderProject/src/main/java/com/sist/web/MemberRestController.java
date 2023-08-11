@@ -67,7 +67,7 @@ public class MemberRestController {
     			// 로그인 
     			result="OK";
     			// 세션 저장 
-    			session.setAttribute("id", vo.getId());
+    			session.setAttribute("id", id);
     			session.setAttribute("name", vo.getName());
     			session.setAttribute("sex", vo.getSex());
     		}
