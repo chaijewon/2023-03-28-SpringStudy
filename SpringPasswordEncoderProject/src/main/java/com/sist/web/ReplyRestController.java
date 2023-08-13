@@ -49,6 +49,14 @@ public class ReplyRestController {
 	   dao.replyDelete(no);
 	   return reply_list_data(fno);
    }
-   
+   @PostMapping(value="food/reply_update_vue.do",produces = "text/plain;charset=UTF-8")
+   public String reply_update(ReplyVO vo)
+   {
+	   System.out.println("no:"+vo.getNo());
+	   System.out.println("msg:"+vo.getMsg());
+	   System.out.println("fno:"+vo.getFno());
+	   dao.replyUpdate(vo);
+	   return reply_list_data(vo.getFno());
+   }
    
 }

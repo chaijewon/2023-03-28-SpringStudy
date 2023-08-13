@@ -2,6 +2,7 @@ package com.sist.mapper;
 import java.util.*;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Update;
 
 import com.sist.vo.ReplyVO;
 public interface ReplyMapper {
@@ -21,4 +22,10 @@ public interface ReplyMapper {
 	
 	@Delete("DELETE FROM springTestReply WHERE no=#{no}")
 	public void replyDelete(int no);
+	
+	@Update("UPDATE springTestReply SET "
+		   +"msg=#{msg} "
+		   +"WHERE no=#{no}")
+	public void replyUpdate(ReplyVO vo);
+	
 }

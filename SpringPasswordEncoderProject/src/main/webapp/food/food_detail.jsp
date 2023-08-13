@@ -24,28 +24,7 @@
   width: 100%;
 }
 </style>
-<script type="text/javascript">
-let selectNo=0;
-$(function(){
-	$('.updateBtn').click(function(){
-		 let no=$(this).attr("data-no");
-		 alert("no:"+no)
-		 if(selectNo==0)
-		 {
-			 $('#reply'+no).show();
-			 $(this).val('취소');
-			 selectNo=1;
-		 }
-		 else
-		 {
-			 $('#reply'+no).hide();
-			 $(this).val('수정');
-			 selectNo=0;
-		 }
-	})
-})
 
-</script>
 </head>
 <body>
   <div class="container">
@@ -114,7 +93,8 @@ $(function(){
                </td>
                <td class="text-right">
                  <span v-if="re.id==food_detail.sessionId">
-                  <input type="button" class="btn btn-xs btn-success" value="수정" :data-no="re.no" class="updateBtn">
+                  <input type="button" class="btn btn-xs btn-success" 
+                  value="수정" @click="replyUpdateForm(re.no)" :id="'up'+re.no">
                   <input type="button" class="btn btn-xs btn-info" value="삭제" @click="replyDelete(re.no)">
                  </span>
                </td>
@@ -126,9 +106,11 @@ $(function(){
               </tr>
               <tr style="display:none" :id="'reply'+re.no" class="updates">
                 <td colspan="2">
-                  <textarea rows="3" cols="55" style="float: left" ref="msg">{{re.msg}}</textarea>
+                  <textarea rows="3" cols="55" style="float: left" id="msg">{{re.msg}}</textarea>
 	              <input type=button value="댓글수정"
-	              style="height: 66px;background-color: blue;color:white">
+	              style="height: 66px;background-color: blue;color:white"
+	                @click="replyUpdate(re.no)"
+	              >
                 </td>
               </tr>
             </table>
@@ -161,7 +143,8 @@ $(function(){
 		 reply_data:[],
 		 msg:'', // v-model과 연결 
 		 menu:[],
-		 poster:[]
+		 poster:[],
+		 no:0
 		 
 	 },
 	 mounted:function(){
@@ -286,7 +269,49 @@ $(function(){
 			 }).catch(error=>{
 				 console.log(error.response)
 			 })
+		 },
+		 replyUpdateForm:function(no){
+			 $('.updates').hide();
+ 			if(this.no==0)
+ 			{
+ 				$('#reply'+no).show();
+ 				$('#up'+no).val("취소");
+ 				this.no=1;
+ 			}
+ 			else
+ 			{
+ 				$('#reply'+no).hide();
+ 				$('#up'+no).val("수정");
+ 				this.no=0;
+ 			}
+ 			
+		 },
+		 replyUpdate:function(no){
+			 let msg=$('#msg').val();
+			 if(msg==="")
+			 {
+				 $('#msg').focus()
+				 return;
+			 }
+			 alert("msg="+msg)
+			 
+			 axios.post('../food/reply_update_vue.do',null,{
+				 params:{
+					 no:no,
+					 msg:msg,
+					 fno:this.fno
+				 }
+			 }).then(response=>{
+				 console.log(response.data)
+				 this.reply_data=response.data//updated => 변경된 데이터값으로 출력 
+				 $('#reply'+no).hide();
+	 			 $('#up'+no).val("수정");
+	 		     this.no=0;
+			 }).catch(error=>{
+				 console.log(error.response)
+			 })
 		 }
+		 
 	 }
    })
   </script>
