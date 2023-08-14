@@ -27,6 +27,13 @@ public class MainController {
 	   model.addAttribute("main_jsp", "../chat/chat.jsp");
 	   return "main/main";
    }
+   
+   @GetMapping("chat2/chat2.do")
+   public String chat2_chat2(Model model)
+   {
+	   model.addAttribute("main_jsp", "../chat2/chat2.jsp");
+	   return "main/main";
+   }
 }
 
 
