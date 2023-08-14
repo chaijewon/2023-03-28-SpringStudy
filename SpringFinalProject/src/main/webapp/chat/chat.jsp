@@ -42,7 +42,7 @@ function onMessage(event) // 채팅 메세지 전송시
 {
 	// msg:데이터전송 , 구분자 => roomin:
 	 let data=event.data;
-	 if(data.substering(0,4)==="msg:")
+	 if(data.substring(0,4)==="msg:")
 	 {
 		 appendMessage(data.substring(4));
      }
@@ -87,12 +87,12 @@ $(function(){
 	$('#sendBtn').click(function(){
 		send();
 	})
-	$('#sendMsg').keydown(function(key)){
+	$('#sendMsg').keydown(function(key){
 		if(key.keyCode==13)
 		{
 			send();
 		}
-	}
+	})
 })
 </script>
 </head>
