@@ -9,13 +9,19 @@
     <put-attribute name="footer" value="/WEB-INF/main/footer.jsp"/>
     <put-attribute name="content" value="/WEB-INF/main/content.jsp"/>
   </definition>
+  <definition name="main2" template="/WEB-INF/main/main2.jsp">
+    <put-attribute name="header" value="/WEB-INF/main/header.jsp"/>
+    <put-attribute name="menu" value="/WEB-INF/main/menu.jsp"/>
+    <put-attribute name="footer" value="/WEB-INF/main/footer.jsp"/>
+    <put-attribute name="content" value="/WEB-INF/main/content.jsp"/>
+  </definition>
   <!-- <definition name="board/list" extends="main">
     <put-attribute name="body" value="/WEB-INF/board/list.jsp"/>
   </definition>
   <definition name="notice/list" extends="main">
     <put-attribute name="body" value="/WEB-INF/notice/list.jsp"/>
   </definition> -->
-  <definition name="*/*" extends="main">
+  <definition name="mypage/*" extends="main">
      <put-attribute name="content" value="/WEB-INF/{1}/{2}.jsp"/>
   </definition>
 </tiles-definitions>

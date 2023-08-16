@@ -14,11 +14,11 @@
     </div>
     <div class="fl_right">
       <ul class="inline">
-        <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
-        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+        <li>ID:<input type="text" size=15 class="input-sm" ref="login_id"></li>
+        <li>PW:<input type="password" size=15 class="input-sm" ref="login_pwd"></li>
+        <li><input type=button value="로그인" class="btn-sm">
       </ul>
     </div>
-   
   </header>
 </div>
 <div class="wrapper row2">
@@ -26,6 +26,19 @@
     
     <ul class="clear">
       <li class="active"><a href="../main/main.do">HOME</a></li>
+      <li><a class="drop" href="#">회원</a>
+        <ul>
+          <li><a href="../member/join.do">회원가입</a></li>
+          <li><a href="pages/full-width.html">아이디찾기</a></li>
+          <li><a href="pages/sidebar-left.html">비밀번호찾기</a></li>
+        </ul>
+      </li>
+      <!-- <li><a class="drop" href="#">회원</a>
+        <ul>
+          <li><a href="pages/gallery.html">회원수정</a></li>
+          <li><a href="pages/full-width.html">회원탈퇴</a></li>
+        </ul>
+      </li>-->
       <li><a class="drop" href="#">맛집</a>
         <ul>
           <li><a href="pages/gallery.html">지역별 맛집 찾기</a></li>
