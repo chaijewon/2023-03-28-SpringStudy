@@ -32,4 +32,9 @@ public interface MemberMapper {
 		  +"#{post},#{addr1},#{addr2},#{phone},"
 		  +"#{content},'n',SYSDATE,'ROLE_USER')")
    public void memberInsert(MemberVO vo);
+   
+   @Select("SELECT pwd,name,role "
+		  +"FROM springMember "
+		  +"WHERE id=#{id}")
+   public MemberVO memberInfoData(String id);
 }

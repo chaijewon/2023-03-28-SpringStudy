@@ -33,4 +33,12 @@ public class MemberDAO {
 	   mapper.memberInsert(vo);
    }
    
+   /*@Select("SELECT pwd,name,role "
+			  +"FROM springMember "
+			  +"WHERE id=#{id}")*/
+	public MemberVO memberInfoData(String id)
+	{
+		return mapper.memberInfoData(id);
+	}
+   
 }

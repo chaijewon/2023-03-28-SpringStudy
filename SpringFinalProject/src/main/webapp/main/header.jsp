@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
 <div class="wrapper row1">
@@ -13,11 +23,19 @@
       <h1><a href="../main/main.do">Spring Food</a></h1>
     </div>
     <div class="fl_right">
+     <c:if test="${sessionScope.id==null }">
       <ul class="inline">
-        <li>ID:<input type="text" size=15 class="input-sm" ref="login_id"></li>
-        <li>PW:<input type="password" size=15 class="input-sm" ref="login_pwd"></li>
-        <li><input type=button value="로그인" class="btn-sm">
+        <li>ID:<input type="text" size=15 class="input-sm" ref="login_id" v-model="login_id"></li>
+        <li>PW:<input type="password" size=15 class="input-sm" ref="login_pwd" v-model="login_pwd"></li>
+        <li><input type=button value="로그인" class="btn-sm" @click="login()">
       </ul>
+     </c:if>
+     <c:if test="${sessionScope.id!=null }">
+      <ul class="inline">
+        <li>${sessionScope.name}님 로그인중입니다</li>
+        <li><input type=button value="로그아웃" class="btn-sm" @click="logout()">
+      </ul>
+     </c:if>
     </div>
   </header>
 </div>
@@ -72,5 +90,64 @@
     
   </nav>
 </div>
+<script>
+  new Vue({
+	  el:'#header',
+	  data:{
+		  login_id:'',
+		  login_pwd:''
+	  },
+	  methods:{
+		  logout:function(){
+			axios.get('http://localhost/web/member/logout_vue.do')
+			.then(res=>{
+				location.href="../main/main.do"
+			})
+		  },
+		  login:function(){
+			  //alert("aaa")
+			  if(this.login_id==='')
+			  {
+				  alert("아이디를 입력하세요")
+				  this.$refs.login_id.focus();
+				  return;
+			  }
+			  if(this.login_pwd==='')
+			  {
+				  alert("비밀번호를 입력하세요")
+				  this.$refs.login_pwd.focus();
+				  return
+			  }
+			     axios.post('http://localhost/web/member/login_ok_vue.do',null,{
+					  params:{
+						  id:this.login_id,
+						  pwd:this.login_pwd
+						  
+					  }
+				  }).then(res=>{
+					  if(res.data==='NOID')
+					  {
+						  alert('아이디가 존재하지 않습니다')
+						  this.login_id=''
+						  this.login_pwd=''
+						  this.$refs.login_id.focus()
+					  }
+					  else if(res.data==='NOPWD')
+					  {
+						  alert("비밀번호가 틀립니다")
+						  this.login_pwd=''
+						  this.$refs.login_pwd.focus()
+					  }
+					  else
+					  {
+						  //this.sessionId=res.data
+						  location.href="../main/main.do"
+					  }
+				  })
+			  
+		  }
+	  }
+  })
+</script>
 </body>
 </html>

@@ -35,9 +35,9 @@ public class MemberController {
     	System.out.println("id:"+vo.getId());
     	vo.setPhone(vo.getPhone1()+"-"+vo.getPhone());
     	String enPwd=encoder.encode(vo.getPwd());
-    	String enId=encoder.encode(vo.getId());
+    	//String enId=encoder.encode(vo.getId());
     	
-    	vo.setId(enId);
+    	//vo.setId(enId);
     	vo.setPwd(enPwd);
     	dao.memberInsert(vo);
     	return "redirect:../main/main.do";
