@@ -1,5 +1,6 @@
 package com.sist.intercepter;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -40,6 +41,22 @@ public class AutoIntercepter extends HandlerInterceptorAdapter{
 			throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("preHandle Call..");
+		Cookie[] cookies=request.getCookies();
+		if(cookies!=null)
+		{
+			// new Cookie("id", id);
+			//           getName() getValue() => key는 중복이 없다
+			for(int i=0;i<cookies.length;i++)
+			{
+				String key=cookies[i].getName();
+				if(key.equals("id"))
+				{
+					String id=cookies[i].getValue();
+					request.setAttribute("id", id);
+					break;
+				}
+			}
+		}
 		return super.preHandle(request, response, handler);
 	}
 

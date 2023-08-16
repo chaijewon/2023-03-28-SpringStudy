@@ -15,9 +15,9 @@
     <mvc:annotation-driven/>
     <mvc:interceptors>
      <mvc:interceptor>
-       <mvc:mapping path="/**"/>
+      <mvc:mapping path="/main/main.do"/>
        <bean id="autoInterceptor" class="com.sist.intercepter.AutoIntercepter"/>
-     </mvc:interceptor>
+      </mvc:interceptor>
     </mvc:interceptors>
     
     <bean id="viewResolver"

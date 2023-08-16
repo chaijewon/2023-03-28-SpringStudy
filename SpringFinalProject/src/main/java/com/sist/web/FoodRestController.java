@@ -21,4 +21,12 @@ public class FoodRestController {
 	   String json=mapper.writeValueAsString(list);
 	   return json;
    }
+   @GetMapping(value="food/category_info_vue.do",produces = "text/plain;charset=UTF-8")
+   public String food_category_info(int cno) throws Exception
+   {
+	   CategoryVO vo=dao.foodCategoryInfoData(cno);
+	   ObjectMapper mapper=new ObjectMapper();
+	   String json=mapper.writeValueAsString(vo);
+	   return json;
+   }
 }

@@ -60,7 +60,7 @@
       <ul class="slides">
         <li v-for="vo,index in cate_list" v-if="index>=0 && index<12">
           <figure><img class="radius-10 btmspace-10" :src="vo.poster" :title="vo.subject">
-            <figcaption><a href="#">{{vo.title}}</a></figcaption>
+            <figcaption><a :href="'../food/food_list.do?cno='+vo.cno">{{vo.title}}</a></figcaption>
           </figure>
         </li>
       </ul>
@@ -71,7 +71,7 @@
       <ul class="slides">
         <li v-for="vo,index in cate_list" v-if="index>=12 && index<18">
           <figure><img class="radius-10 btmspace-10" :src="vo.poster" :title="vo.subject">
-            <figcaption><a href="#">{{vo.title}}</a></figcaption>
+            <figcaption><a :href="'../food/food_list.do?cno='+vo.cno">{{vo.title}}</a></figcaption>
           </figure>
         </li>
       </ul>
@@ -81,9 +81,8 @@
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
         <li v-for="vo,index in cate_list" v-if="index>=18 && index<30">
-        
           <figure><img class="radius-10 btmspace-10" :src="vo.poster" :title="vo.subject">
-            <figcaption><a href="#">{{vo.title}}</a></figcaption>
+            <figcaption><a :href="'../food/food_list.do?cno='+vo.cno">{{vo.title}}</a></figcaption>
           </figure>
         </li>
       </ul>

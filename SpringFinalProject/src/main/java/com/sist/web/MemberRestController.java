@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sist.dao.*;
@@ -51,7 +53,8 @@ public class MemberRestController {
 	   return result;
    }
    @PostMapping(value="member/login_ok_vue.do",produces = "text/plain;charset=UTF-8")
-   public String member_login(String id,String pwd,HttpSession session)
+   public String member_login(String id,String pwd,boolean ck,
+		   HttpSession session,HttpServletResponse response)
    {
 	   String result="";
 	   int count=dao.memberIdCheck(id);
@@ -68,6 +71,23 @@ public class MemberRestController {
 			   session.setAttribute("id", id);
 			   session.setAttribute("name", vo.getName());
 			   session.setAttribute("role", vo.getRole());
+			   if(ck==true)
+			   {
+				   Cookie cookie=new Cookie("id", id);
+				   cookie.setPath("/");
+				   cookie.setMaxAge(60*60*24);
+				   response.addCookie(cookie);
+				   
+				   cookie=new Cookie("name", vo.getName());
+				   cookie.setPath("/");
+				   cookie.setMaxAge(60*60*24);
+				   response.addCookie(cookie);
+				   
+				   cookie=new Cookie("role", vo.getRole());
+				   cookie.setPath("/");
+				   cookie.setMaxAge(60*60*24);
+				   response.addCookie(cookie);
+			   }
 		   }
 		   else
 		   {

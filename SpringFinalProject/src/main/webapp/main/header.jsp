@@ -29,6 +29,9 @@
         <li>PW:<input type="password" size=15 class="input-sm" ref="login_pwd" v-model="login_pwd"></li>
         <li><input type=button value="로그인" class="btn-sm" @click="login()">
       </ul>
+      <ul class="inline">
+        <li>ID 저장:<input type="checkbox" ref="ck" v-model="ck"></li>
+      </ul>
      </c:if>
      <c:if test="${sessionScope.id!=null }">
       <ul class="inline">
@@ -94,8 +97,9 @@
   new Vue({
 	  el:'#header',
 	  data:{
-		  login_id:'',
-		  login_pwd:''
+		  login_id:'${id}',
+		  login_pwd:'',
+		  ck:true
 	  },
 	  methods:{
 		  logout:function(){
@@ -121,7 +125,8 @@
 			     axios.post('http://localhost/web/member/login_ok_vue.do',null,{
 					  params:{
 						  id:this.login_id,
-						  pwd:this.login_pwd
+						  pwd:this.login_pwd,
+						  ck:this.ck
 						  
 					  }
 				  }).then(res=>{
