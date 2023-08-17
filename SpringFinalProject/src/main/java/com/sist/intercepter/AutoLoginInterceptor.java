@@ -1,9 +1,12 @@
 package com.sist.intercepter;
 
+import java.util.Timer;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 /*
@@ -18,9 +21,10 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  *                                                        JSP
  */
 
+import com.sist.task.TimeTaskManager;
+
 //<bean이용>
 public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
-
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -58,6 +62,9 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("afterCompletion Call..");
+		TimeTaskManager timer=new TimeTaskManager(request);
+		Timer job=new Timer();
+		job.scheduleAtFixedRate(timer, 1000, 1000);
 		super.afterCompletion(request, response, handler, ex);
 	}
    

@@ -9,4 +9,5 @@ import lombok.Setter;
 @Setter
 public class MyVO {
   private List<TestVO> list=new ArrayList<TestVO>();
+  
 }

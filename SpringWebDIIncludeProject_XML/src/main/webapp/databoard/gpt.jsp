@@ -210,7 +210,7 @@ $(function(){
     });
 
     function chatGPT() {
-      const api_key = "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" 
+      const api_key = "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" 
       const keywords = document.getElementById('keywords').value
       $('#loading').show();
 
