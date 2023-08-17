@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+     <!-- 사용자 정의 클래스 메모리 할당 -->
+     <!-- AOP설정 (공통 모듈) -->
+     <!-- DataBase관련 -->
+     <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource"
+        p:driverClassName="oracle.jdbc.driver.OracleDriver"
+        p:url="jdbc:oracle:thin:@localhost:1521:XE"
+        p:username="hr"
+        p:password="happy"
+     />
+     <!-- 트랜잭션  -->
+     <!-- MyBatis연결 -->
+     <bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean"
+        p:dataSource-ref="ds"
+        p:configLocation="classpath:Config.xml"
+     />
+     <!-- DAO로 전송 -->
+     <bean id="dao" class="com.sist.dao.EmpDAO"
+       p:sqlSessionFactory-ref="ssf"
+     />
+     <!-- ViewResolver (JSP) 경로명 지정  -->
+     <!-- MultipartResolver -->
+     <!-- Security -->
+     <!-- WebSocket -->
+</beans>

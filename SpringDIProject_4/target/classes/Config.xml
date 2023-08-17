@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis : Connection (전체 SQL을 모아준다) -->
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 
+    1. SQL문장 
+    2. VO등록 
+    3. 입력값 설정 
+ -->
+<!-- 
+   (properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, objectWrapperFactory?, 
+    reflectorFactory?, plugins?, environments?, databaseIdProvider?, mappers?)
+ -->
+  <!-- VO등록  -->
+  <typeAliases>
+    <typeAlias type="com.sist.dao.EmpVO" alias="EmpVO"/>
+    <typeAlias type="com.sist.dao.DeptVO" alias="DeptVO"/>
+  </typeAliases>
+  <mappers>
+    <mapper resource="com/sist/dao/emp-mapper.xml"/>
+  </mappers>
+</configuration>
+ 

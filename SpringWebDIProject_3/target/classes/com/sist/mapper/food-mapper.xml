@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.food-mapper">
+  <select id="categoryListData" resultType="com.sist.vo.CategoryVO" 
+    parameterType="hashmap">
+    SELECT cno,title,poster,subject
+    FROM food_category
+    WHERE
+    <choose>
+      <when test="cno==1">
+       cno BETWEEN 1 AND 12
+      </when>
+      <when test="cno==2">
+       cno BETWEEN 13 AND 18
+      </when>
+      <when test="cno==3">
+       cno BETWEEN 19 AND 30
+      </when>
+    </choose>
+    <!-- <if test="cno==1">
+     cno BETWEEN 1 AND 12
+    </if>
+    <if test="cno==2">
+     cno BETWEEN 13 AND 18
+    </if>
+    <if test="cno==3">
+     cno BETWEEN 19 AND 30
+    </if> -->
+    
+    <!-- 
+          <choose>
+            <when test="cno==1">cno BETWEEN 1 AND 12</when>
+            <when test="cno==2">cno BETWEEN 1 AND 12</when>
+            <when test="cno==3">cno BETWEEN 1 AND 12</when>
+          </choose>
+     -->
+  </select>
+</mapper>
