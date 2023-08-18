@@ -21,6 +21,7 @@ public class FoodRestController {
 	   String json=mapper.writeValueAsString(list);
 	   return json;
    }
+   ///////////////////////
    @GetMapping(value="food/category_info_vue.do",produces = "text/plain;charset=UTF-8")
    public String food_category_info(int cno) throws Exception
    {
@@ -29,6 +30,25 @@ public class FoodRestController {
 	   String json=mapper.writeValueAsString(vo);
 	   return json;
    }
+   @GetMapping(value="food/food_list_vue.do",produces = "text/plain;charset=UTF-8")
+   public String food_list(int cno) throws Exception
+   {
+	   List<FoodVO> list=dao.foodListData(cno);
+	   for(FoodVO vo:list)
+	   {
+		   String poster=vo.getPoster();
+		   poster=poster.substring(0,poster.indexOf("^"));
+		   poster=poster.replace("#", "&");
+		   vo.setPoster(poster);
+		   String address=vo.getAddress();
+		   address=address.substring(0,address.indexOf("지번"));
+		   vo.setAddress(address);
+	   }
+	   ObjectMapper mapper=new ObjectMapper();
+	   String json=mapper.writeValueAsString(list);
+	   return json;
+   }
+   //////////////////// 카테고리별 맛집 출력 
    @GetMapping(value="food/food_find_vue.do",produces = "text/plain;charset=UTF-8")
    public String food_find(int page,String column,String fd) throws Exception
    {

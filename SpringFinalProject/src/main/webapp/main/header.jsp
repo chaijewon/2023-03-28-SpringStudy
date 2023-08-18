@@ -95,7 +95,7 @@
   </nav>
 </div>
 <script>
-  new Vue({
+  let header=new Vue({
 	  el:'#header',
 	  data:{
 		  login_id:'${id}',

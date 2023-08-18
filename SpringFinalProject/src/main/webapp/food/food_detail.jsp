@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div class="wrapper row3">
+  <main class="container clear"> 
+  <h2 class="sectiontitle">맛집 상세보기</h2>
+  </main>
+</div>
 </body>
 </html>

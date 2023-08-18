@@ -111,7 +111,7 @@
   </main>
 </div>
 <script>
-  new Vue({
+  let home=new Vue({
 	  el:'.container',
 	  data:{
 		  cate_list:[]

@@ -23,7 +23,12 @@ public class FoodDAO {
    {
 	   return mapper.foodCategoryInfoData(cno);
    }
-   
+   /*@Select("SELECT fno,name,address,phone,type,poster "
+			  +"FROM food_house "
+			  +"WHERE cno=#{cno}")*/
+   public List<FoodVO> foodListData(int cno){
+	   return mapper.foodListData(cno);
+   }
    // <select id="foodFindData" resultType="FoodVO" parameterType="hashmap">
    public List<FoodVO> foodFindData(Map map)
    {

@@ -25,7 +25,7 @@
         <figure>
           <header class="heading">{{title}}</header>
           <ul class="nospace clear">
-            <li class="one_quarter first"><a href="#"><img src="../images/demo/gallery/gallery.gif" alt=""></a></li>
+            <li v-for="vo,index in seoul_list" :class="index%4==0?'one_quarter first':'one_quarter'"><a href="#"><img :src="vo.poster" :title="vo.title" style="width:300px;height: 150px"></a></li>
           </ul>
         </figure>
       </div>
@@ -33,9 +33,10 @@
       <!-- ################################################################################################ -->
       <nav class="pagination">
         <ul>
-          <li><a href="#">&laquo; Previous</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">Next &raquo;</a></li>
+          <li v-if="startPage>1"><a href="#" @click="prev()">&laquo; Previous</a></li>
+          <li v-for="i in range(startPage,endPage)" :class="i==curpage?'current':''">
+          <a href="#" @click="pageChange(i)">{{i}}</a></li>
+          <li v-if="endPage<totalpage"><a href="#" @click="next()">Next &raquo;</a></li>
         </ul>
       </nav>
       <!-- ################################################################################################ --> 
@@ -59,7 +60,7 @@
     		 endPage:0
     	 },
     	 mounted:function(){
-    		 
+    		 this.dataRecv()
     	 },
     	 methods:{
     		 dataRecv:function(){
@@ -91,6 +92,28 @@
     			 }).catch(error=>{
     				 console.log(error.response)
     			 })
+    		 },
+    		 range:function(start,end){
+    			 let arr=[];
+    			 let leng=end-start;
+    			 for(let i=0;i<=leng;i++)
+    			 {
+    				 arr[i]=start;
+    				 start++;
+    			 }
+    			 return arr;
+    		 },
+    		 pageChange:function(page){
+    			 this.curpage=page;
+    			 this.dataRecv()
+    		 },
+    		 prev:function(){
+    			 this.curpage=this.startPage-1
+    			 this.dataRecv()
+    		 },
+    		 next:function(){
+    			 this.curpage=this.endPage+1
+    			 this.dataRecv()
     		 }
     	 }
      })
