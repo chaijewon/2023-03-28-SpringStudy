@@ -3,5 +3,23 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.mapper.RecipeMapper">
-
+  <select id="chefFindData" resultType="RecipeVO" parameterType="hashmap">
+    SELECT no,poster,title,chef,num 
+    FROM (SELECT no,poster,title,chef,rownum as num 
+    FROM (SELECT no,poster,title,chef
+    FROM recipe WHERE chef=#{chef}
+    <if test="fd!='all'">
+    AND title LIKE '%'||#{fd}||'%'
+    </if>
+    ))
+    WHERE num BETWEEN #{start} AND #{end}
+  </select>
+  <select id="chefFindCount" resultType="int" parameterType="hashmap">
+    SELECT COUNT(*) 
+    FROM recipe 
+    WHERE chef=#{chef} 
+    <if test="fd!='all'">
+     AND title LIKE '%'||#{fd}||'%'
+    </if>
+  </select>
 </mapper>

@@ -77,9 +77,9 @@
       </li>
       <li><a class="drop" href="#">서울 여행</a>
         <ul>
-          <li><a href="pages/gallery.html">명소</a></li>
-          <li><a href="pages/full-width.html">자연</a></li>
-          <li><a href="pages/sidebar-left.html">쇼핑</a></li>
+          <li><a href="../seoul/seoul_list.do?type=1">명소</a></li>
+          <li><a href="../seoul/seoul_list.do?type=2">자연</a></li>
+          <li><a href="../seoul/seoul_list.do?type=3">쇼핑</a></li>
           <li><a href="pages/sidebar-left.html">지역별 코스</a></li>
         </ul>
       </li>

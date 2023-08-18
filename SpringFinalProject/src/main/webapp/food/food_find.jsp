@@ -98,7 +98,7 @@
             <td width="25%">메뉴</td>
             <td width="75%">
               <ul>
-               <li v-for="m in menus">{{m}}</li>
+               <li v-for="m in menus">{{m}}원</li>
               </ul>
             </td>
           </tr>
@@ -205,7 +205,7 @@
     					autoOpen:false,
     					modal:true,
     					width:700,
-    					height:600
+    					height:700
     				}).dialog("open");
     			}).catch(error=>{
     				console.log(error.response)

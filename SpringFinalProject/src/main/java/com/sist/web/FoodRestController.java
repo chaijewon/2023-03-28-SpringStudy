@@ -83,6 +83,12 @@ public class FoodRestController {
 	   String addr=vo.getAddress();
 	   addr=addr.substring(0,addr.indexOf("지번"));
 	   vo.setAddress(addr.trim());
+	   String menu=vo.getMenu();
+	   if(!menu.equals("no"))
+	   {
+		   menu=menu.substring(0,menu.lastIndexOf("원"));
+		   vo.setMenu(menu);
+	   }
 	   ObjectMapper mapper=new ObjectMapper();
 	   String json=mapper.writeValueAsString(vo);
 	   return json;
