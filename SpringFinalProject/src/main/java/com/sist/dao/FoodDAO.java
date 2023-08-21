@@ -46,4 +46,11 @@ public class FoodDAO {
    {
 	   return mapper.foodDetailData(fno);
    }
+   /*@Select("SELECT fno,name,phone,address,type,time,parking,menu,price,score,poster "
+			  +"FROM food_house "
+			  +"WHERE fno=#{fno}")*/
+   public FoodVO foodDetailHouseData(int fno)
+   {
+	   return mapper.foodDetailHouseData(fno);
+   }
 }
