@@ -86,7 +86,7 @@
       <li><a class="drop" href="#">커뮤니티</a>
         <ul>
           <li><a href="pages/gallery.html">공지사항</a></li>
-          <li><a href="pages/full-width.html">자유게시판</a></li>
+          <li><a href="../databoard/list.do">자유게시판</a></li>
         </ul>
       </li>
       <li><a href="../chat/chat.do">실시간 채팅</a></li>

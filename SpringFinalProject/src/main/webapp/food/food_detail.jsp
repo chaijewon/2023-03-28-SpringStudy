@@ -93,8 +93,8 @@
            </tr>
            <tr :id="'u'+rvo.no" class="updates" style="display:none">
 	        <td colspan="2">
-	         <textarea rows="4" cols="58"  id="msg" style="float: left">{{rvo.msg}}</textarea>
-	         <button style="float: left;background-color: blue;color:white;width: 100px;height: 85px" @click="replyUpdate(rvo.no,rvo.msg)">댓글수정</button>
+	         <textarea rows="4" cols="58"  :id="'msg'+rvo.no" style="float: left">{{rvo.msg}}</textarea>
+	         <button style="float: left;background-color: blue;color:white;width: 100px;height: 85px" @click="replyUpdate(rvo.no)">댓글수정</button>
 	        </td>
 	       </tr>
          </table>
@@ -210,7 +210,8 @@ let foodDetail=new Vue({
 			  }
 		  },
 		  replyUpdate:function(no){
-			  let msg=$('#msg').val()
+			  
+			  let msg=$('#msg'+no).val()
 			  axios.post('../reply/reply_update_vue.do',null,{
 				  params:{
 					  no:no,
