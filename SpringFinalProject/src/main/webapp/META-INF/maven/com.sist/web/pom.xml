@@ -21,12 +21,7 @@
 		</repository>
 	</repositories>
 	<dependencies>
-	   <dependency>
-		    <groupId>javax.mail</groupId>
-		    <artifactId>javax.mail-api</artifactId>
-		    <version>1.6.2</version>
-		</dependency>
-	   
+	  
 	   <dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
@@ -523,10 +518,16 @@
 		</dependency>
 		<!-- 자바 메일 -->
 		<dependency>
-		    <groupId>javax.mail</groupId>
-		    <artifactId>mail</artifactId>
-		    <version>1.4.7</version>
+         <groupId>javax.mail</groupId>
+         <artifactId>javax.mail-api</artifactId>
+         <version>1.4.7</version>
+        </dependency>
+        <dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.1</version>
 		</dependency>
+        
 		<!-- 자바 웹소켓 -->
 		<dependency>
 		    <groupId>javax.websocket</groupId>
