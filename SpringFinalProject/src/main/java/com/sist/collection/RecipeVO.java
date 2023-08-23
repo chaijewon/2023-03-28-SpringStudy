@@ -12,4 +12,6 @@ public class RecipeVO {
     private String chef;
     private String link;
     private int hit;
+    
+    
 }

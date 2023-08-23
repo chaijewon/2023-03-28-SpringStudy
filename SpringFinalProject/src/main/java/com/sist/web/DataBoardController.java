@@ -9,12 +9,21 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.snu.ids.ha.index.Keyword;
+import org.snu.ids.ha.index.KeywordExtractor;
+import org.snu.ids.ha.index.KeywordList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import java.util.*;
+import com.sist.dao.*;
+import com.sist.vo.*;
 @Controller
 public class DataBoardController {
+   @Autowired
+   private DataBoardDAO dao;
+	
    @GetMapping("databoard/list.do")
    public String databoard_list(Model model)
    {
@@ -30,6 +39,23 @@ public class DataBoardController {
    @GetMapping("databoard/detail.do")
    public String databoard_detail(int no,Model model)
    {
+	   DataBoardVO vo=dao.databoardDetailData(no);
+	   String keyword=vo.getContent();
+	   KeywordExtractor ke=new KeywordExtractor();
+	   KeywordList list=ke.extractKeyword(keyword, true);
+	   List<WordVO> wList=new ArrayList<WordVO>();
+	   for(int i=0;i<list.size();i++)
+	   {
+	     Keyword wrd=list.get(i);
+	     if(wrd.getCnt()>1)
+	     {
+	    	WordVO wvo=new WordVO();
+	    	wvo.setCount(wrd.getCnt());
+	    	wvo.setWord(wrd.getString());
+	    	wList.add(wvo);
+	     }
+	   }
+	   model.addAttribute("wList", wList);
 	   model.addAttribute("no", no);
 	   model.addAttribute("main_jsp", "../databoard/detail.jsp");
 	   return "main/main";
@@ -61,6 +87,21 @@ public class DataBoardController {
 		   bos.close();
 	   }catch(Exception ex){}
    }
+   @GetMapping("databoard/update.do")
+   public String databoardUpdate(int no,Model model)
+   {
+	   //model.addAttribute("no", no);
+	   model.addAttribute("main_jsp", "../databoard/update.jsp");
+	   return "main/main";
+   }
+   @GetMapping("databoard/delete.do")
+   public String databoardDeletee(int no,Model model)
+   {
+	   //model.addAttribute("no", no);
+	   model.addAttribute("main_jsp", "../databoard/delete.jsp");
+	   return "main/main";
+   }
+   
 }
 
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,27 @@
   width:800px;
 }
 </style>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['단어', '단어횟수'],
+          <c:forEach var="wvo" items="${wList}">
+           ['<c:out value="${wvo.word}"/>',  <c:out value="${wvo.count}"/>],
+          </c:forEach>
+        ]);
+
+        var options = {
+          title: '단어 분석',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 <body>
   <div class="wrapper row3">
@@ -57,14 +79,17 @@
        </tr>
        <tr>
          <td colspan="4" class="text-right">
-          <a href="#" class="btn btn-xs btn-success">수정</a>
-          <a href="#" class="btn btn-xs btn-info">삭제</a>
+          <a :href="'../databoard/update.do?no='+no" class="btn btn-xs btn-success">수정</a>
+          <a :href="'../databoard/delete.do?no='+no" class="btn btn-xs btn-info">삭제</a>
           <a href="../databoard/list.do" class="btn btn-xs btn-warning">목록</a>
          </td>
        </tr>
       </table>
     </div>
    </main>
+  </div>
+  <div class="row">
+   <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
   </div>
   <script>
     new Vue({

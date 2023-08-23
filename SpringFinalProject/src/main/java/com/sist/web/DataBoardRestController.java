@@ -1,6 +1,6 @@
 package com.sist.web;
 
-import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.collections.map.HashedMap;import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.dao.*;
 import com.sist.vo.*;
 
+import oracle.jdbc.proxy.annotation.GetProxy;
 import oracle.net.aso.m;
 @RestController
 public class DataBoardRestController {
@@ -101,6 +102,46 @@ public class DataBoardRestController {
 	   ObjectMapper mapper=new ObjectMapper();
 	   String json=mapper.writeValueAsString(vo);
 	   return json;
+   }
+   @GetMapping(value="databoard/update_vue.do",produces = "text/plain;charset=UTF-8")
+   public String databoard_update(int no) throws Exception
+   {
+	   DataBoardVO vo=dao.databoardUpdateData(no);
+	   ObjectMapper mapper=new ObjectMapper();
+	   String json=mapper.writeValueAsString(vo);
+	   return json;
+   }
+   @PostMapping(value="databoard/update_ok_vue.do",produces = "text/plain;charset=UTF-8")
+   public String databoard_update_ok(DataBoardVO vo)
+   {
+	   String result=dao.databoardUpdate(vo);
+	   return result;
+   }
+   @GetMapping(value="databoard/delete_ok_vue.do",produces = "text/plain;charset=UTF-8")
+   public String databoard_delete(int no,String pwd,HttpServletRequest request)
+   {
+	   DataBoardVO vo=dao.databoardFileInfoData(no);
+	   String result=dao.databoardDelete(no, pwd);
+	   if(result.equals("yes"))
+	   {
+		   try
+		   {
+			   if(vo.getFilecount()!=0)
+			   {
+				   String path=request.getSession().getServletContext().getRealPath("/")+"upload\\";
+				   path=path.replace("\\", File.separator);
+				   StringTokenizer st=new StringTokenizer(vo.getFilename(),",");
+				   
+				   while(st.hasMoreTokens())
+				   {
+					   path=path+st.nextToken();
+					   File file=new File(path);
+					   file.delete();
+				   }
+			   }
+		   }catch(Exception ex){}
+	   }
+	   return result;
    }
 }
 

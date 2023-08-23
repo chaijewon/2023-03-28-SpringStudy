@@ -30,19 +30,19 @@
        <tr>
         <th width=15%>이름</th>
         <td width=85%>
-         <input type=text ref="name" :value="name" class="input-sm" size=20>
+         <input type=text ref="name" class="input-sm" size=20 v-model="name">
         </td>
        </tr>
        <tr>
         <th width=15%>제목</th>
         <td width=85%>
-         <input type=text ref="subject" :value="subject" class="input-sm" size=55>
+         <input type=text ref="subject" v-model="subject" class="input-sm" size=55>
         </td>
        </tr>
        <tr>
         <th width=15%>내용</th>
         <td width=85%>
-         <textarea rows="10" cols="55" ref="content" :value="content"></textarea>
+         <textarea rows="10" cols="55" ref="content" v-model="content"></textarea>
         </td>
        </tr>
        <tr>
@@ -67,11 +67,29 @@
    new Vue({
 	   el:'.container',
 	   data:{
+		   no:${param.no},
 		   name:'',
 		   subject:'',
 		   content:'',
 		   pwd:'',
-		   images:''
+		   update_data:{}
+	   },
+	   mounted:function(){
+		 // 데이터 읽기 
+		 axios.get('../databoard/update_vue.do',{
+			 params:{
+				 no:this.no
+			 }
+		 }).then(response=>{
+			 console.log(response.data)
+			 this.update_data=response.data;
+			 this.name=response.data.name
+			 this.subject=response.data.subject
+			 this.content=response.data.content
+			 
+		 }).catch(error=>{
+			 console.log(error.response)
+		 })
 	   },
 	   methods:{
 		   submitForm:function(){
@@ -100,23 +118,21 @@
 			   form.append("subject",this.subject);
 			   form.append("content",this.content);
 			   form.append("pwd",this.pwd);
-			   
-			   let leng=this.$refs.images.files.length;
-			   if(leng>0)
-			   {
-				   for(let i=0;i<this.$refs.images.files.length;i++)
+			   form.append("no",this.no)
+			  
+			   axios.post('../databoard/update_ok_vue.do',form).then(response=>{
+				   
+				   let result=response.data;
+				   if(result==="yes")
 				   {
-					   form.append("images["+i+"]",this.$refs.images.files[i])
+					   location.href="../databoard/detail.do?no="+this.no
 				   }
-			   }
-			   
-			   
-			   axios.post('../databoard/insert_vue.do',form,{
-				   header:{
-					   'Context-Type':'multipart/form-data'
+				   else
+				   {
+					   alert("비밀번호가 틀립니다!!")
+					   this.pwd='';
+					   this.$refs.pwd.focus();
 				   }
-			   }).then(response=>{
-				   location.href="../databoard/list.do"
 			   }).catch(error=>{
 				   console.log(error.response);
 			   })
