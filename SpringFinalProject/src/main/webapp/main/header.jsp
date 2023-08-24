@@ -65,7 +65,7 @@
         <ul>
           <li><a href="../food/food_find.do">지역별 맛집 찾기</a></li>
           <li><a href="../recommand/recommand.do">맛집 추천</a></li>
-          <li><a href="pages/sidebar-left.html">맛집 예약</a></li>
+          <li><a href="../reserve/reserve_main.do">맛집 예약</a></li>
         </ul>
       </li>
       <li><a class="drop" href="#">레시피</a>
@@ -80,6 +80,7 @@
           <li><a href="../seoul/seoul_list.do?type=1">명소</a></li>
           <li><a href="../seoul/seoul_list.do?type=2">자연</a></li>
           <li><a href="../seoul/seoul_list.do?type=3">쇼핑</a></li>
+          <li><a href="../weather/weather.do">오늘의 날씨</a></li>
           <li><a href="pages/sidebar-left.html">지역별 코스</a></li>
         </ul>
       </li>

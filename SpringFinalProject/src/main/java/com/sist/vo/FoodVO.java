@@ -10,4 +10,5 @@ public class FoodVO {
    private String name,phone,type,parking,price,time,menu,poster,address;
    private double score;
    private String sessionId,userName,rdata;
+   private String msg,rname,reserve_day;
 }

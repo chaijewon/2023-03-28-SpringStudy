@@ -23,12 +23,16 @@
 <body>
   <div class="container">
     <div class="row">
-      <button class="btn btn-sm btn-danger" @click="aaa">First</button>
-      <div>{{first}}</div>
-    </div>
-    <div class="row">
-      <button class="btn btn-sm btn-danger" @click="bbb">Second</button>
-      <div>{{second}}</div>
+      <select  class="input-sm" ref="selected">
+                          <option value="월요일">월요일</option>
+                          <option value="화요일">화요일</option>
+                          <option value="수요일">수요일</option>
+                          <option value="목요일">목요일</option>
+                          <option value="금요일">금요일</option>
+                          <option value="토요일">토요일</option>
+                          <option value="일요일">일요일</option>
+       </select>
+       <button value="실행" class="btn-sm btn-danger" @click="aaa()">Click</button>
     </div>
   </div>
   <script>
@@ -39,16 +43,10 @@
     		second:''
     	},
     	methods:{
-    		aaa:function(){
-    			axios.get("http://localhost:8000/first-service/welcome").then(res=>{
-    				this.first=res.data
-    			})
-    		},
-    		bbb:function(){
-    			axios.get("http://localhost:8000/second-service/welcome").then(res=>{
-    				this.second=res.data
-    			})
-    		}
+    		
+	        aaa:function(){
+	        	alert(this.$refs.selected.value)
+	        }
     	}
     })
   </script>
