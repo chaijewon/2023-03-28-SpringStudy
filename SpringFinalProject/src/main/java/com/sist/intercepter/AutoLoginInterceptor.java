@@ -62,9 +62,10 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("afterCompletion Call..");
-		TimeTaskManager timer=new TimeTaskManager(request);
-		Timer job=new Timer();
-		job.scheduleAtFixedRate(timer, 1000, 1000);
+		/*
+		 * TimeTaskManager timer=new TimeTaskManager(request); Timer job=new Timer();
+		 * job.scheduleAtFixedRate(timer, 1000, 1000);
+		 */
 		super.afterCompletion(request, response, handler, ex);
 	}
    
