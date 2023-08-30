@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.web.mapper.FoodMapper">
+  <!--  public List<CategoryVO> categoryListData(); -->
+  <select id="foodFindData" resultType="FoodVO" parameterType="hashmap">
+    SELECT fno,name,poster
+    FROM food_location 
+    WHERE address LIKE CONCAT('%',#{address},'%')
+    ORDER BY fno ASC
+    LIMIT #{start} , 12
+  </select>
+  <select id="foodFindTotalPage" resultType="int" parameterType="string">
+    SELECT CEIL(COUNT(*)/12.0) 
+    FROM food_location WHERE address LIKE CONCAT('%',#{address},'%')
+  </select>
+</mapper>

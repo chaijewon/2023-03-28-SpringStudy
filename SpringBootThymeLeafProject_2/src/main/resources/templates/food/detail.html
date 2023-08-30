@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style type="text/css">
+.container{
+  margin-top: 50px;
+}
+.row{
+  margin: 0px auto;
+  width: 100%;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+     <table class="table">
+       <tr>
+        <td class="text-center" th:each="poster:${pList}">
+         <img th:src="${poster}" style="width: 100%">
+        </td>
+       </tr>
+     </table>
+    </div>
+    <div style="height: 20px"></div>
+    <div class="col-sm-7">
+      <table class="table">
+       <tr>
+        <td colspan="2"><h3><span th:text="${vo.name}"></span>&nbsp;
+        <span style="color:orange" th:text="${vo.score}"></span></h3></td>
+       </tr>
+       <tr>
+        <td width=15%>주소</td>
+        <td width=85% th:text="${vo.address}"></td>
+       </tr>
+       <tr>
+        <td width=15%>전화</td>
+        <td width=85% th:text="${vo.tel}"></td>
+       </tr>
+       <tr>
+        <td width=15%>음식종류</td>
+        <td width=85% th:text="${vo.type}"></td>
+       </tr>
+       <tr>
+        <td width=15%>가격대</td>
+        <td width=85% th:text="${vo.price}"></td>
+       </tr>
+       <tr>
+        <td width=15%>주차</td>
+        <td width=85% th:text="${vo.parking}"></td>
+       </tr>
+       <tr>
+        <td width=15%>영업시간</td>
+        <td width=85% th:text="${vo.time}"></td>
+       </tr>
+       <tr th:if="${vo.menu!='no'}">
+        <td width=15%>메뉴</td>
+        <td width=85% th:text="${vo.menu}"></td>
+       </tr>
+       <tr>
+         <td class="text-right" colspan="2">
+          <a href="javascript:history.back()" class="btn btn-sm btn-danger">목록</a>
+         </td>
+       </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

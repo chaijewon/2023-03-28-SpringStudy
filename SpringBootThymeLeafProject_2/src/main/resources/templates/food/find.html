@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style type="text/css">
+.container{
+  margin-top: 50px;
+}
+.row{
+  margin: 0px auto;
+  width: 100%;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+   <div class="row">
+	   <form method=post action="/food/find">
+	    <input type=text name=fd size=20 class="input-sm" th:value="${fd}">
+	    <button class="btn btn-sm btn-primary">검색</button>
+	   </form>
+   </div>
+   <div style="height: 10px"></div>
+   <div class="row">
+      <!-- for(FoodVO vo:list) -->
+      <div class="col-md-3" th:each="vo:${list}">
+	    <div class="thumbnail">
+	      <a th:href="@{/food/detail(fno=${vo.fno})}">
+	        <img th:src="${vo.poster}" alt="Lights" style="width:100%">
+	        <div class="caption">
+	          <p th:text="${vo.name}"></p>
+	        </div>
+	      </a>
+	    </div>
+	  </div>
+   </div>
+   <div style="height: 10px"></div>
+   <div class="row">
+     <div class="text-center">
+       <ul class="pagination">
+		  <li th:if="${startPage>1}"><a th:href="@{/food/find(page=${startPage-1},fd=${fd})}">&lt;</a></li>
+		  <li th:class="${curpage==i?'active':''}" th:each="i:${#numbers.sequence(startPage,endPage)}"><a th:href="@{/food/find(page=${i},fd=${fd})}" th:text="${i}"></a></li>
+		  <li th:if="${endPage<totalpage}"><a th:href="@{/food/find(page=${endPage+1},fd=${fd})}">&gt;</a></li>
+		</ul>
+     </div>
+   </div>
+  </div>
+</body>
+</html>
