@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="wrapper row1">
+  <header id="header" class="clear"> 
+    <div id="logo" class="fl_left">
+      <h1><a href="/">ThymeLeaf</a></h1>
+    </div>
+  </header>
+</div>
+<div class="wrapper row2">
+  <nav id="mainav" class="clear"> 
+    
+    <ul class="clear">
+      <li class="active"><a href="/">HOME</a></li>
+      <li><a class="drop" href="#">맛집</a>
+        <ul>
+          <li><a href="/food/find">지역별 맛집 찾기</a></li>
+        </ul>
+      </li>
+      <li><a class="drop" href="#">서울 여행</a>
+        <ul>
+          <li><a href="/seoul/location">명소</a></li>
+          <li><a href="/seoul/nature">자연</a></li>
+          <li><a href="/seoul/shop">쇼핑</a></li>
+          <li><a href="/weather/weather">오늘의 날씨</a></li>
+        </ul>
+      </li>
+      <li><a class="drop" href="#">커뮤니티</a>
+        <ul>
+          <li><a href="/board/board_list">자유게시판</a></li>
+        </ul>
+      </li>
+    </ul>
+    
+  </nav>
+</div>
+</body>
+</html>
