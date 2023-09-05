@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="wrapper row3">
+  <main class="container clear"> 
+    <!-- main body --> 
+    <!-- ################################################################################################ -->
+    <div class="content"> 
+      <!-- ################################################################################################ -->
+      <div id="gallery">
+        <figure>
+          <header class="heading">서울 명소</header>
+          <ul class="nospace clear">
+            <li th:each="vo,i:${list}" th:class="${i.index%4==0?'one_quarter first':'one_quarter'}">
+             <a href="#"><img th:src="${vo.poster}" th:title="${vo.title}"></a></li>
+          </ul>
+        </figure>
+      </div>
+      <!-- ################################################################################################ --> 
+      <!-- ################################################################################################ -->
+      <nav class="pagination">
+        <ul>
+          <li th:if="${startPage>1}"><a th:href="@{/seoul/location(page=${startPage-1})}">&laquo; Previous</a></li>
+          <li th:class="${curpage==i}?'current':''" 
+              th:each="i:${#numbers.sequence(startPage,endPage)}">
+          <a th:href="@{/seoul/location(page=${i})}" th:text="${i}"></a></li>
+          <li th:if="${endPage<totalpage}"><a th:href="@{/seoul/location(page=${endPage+1})}">Next &raquo;</a></li>
+        </ul>
+      </nav>
+      <!-- ################################################################################################ --> 
+    </div>
+    <!-- ################################################################################################ --> 
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+</body>
+</html>
