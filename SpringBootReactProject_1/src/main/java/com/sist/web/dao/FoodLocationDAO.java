@@ -18,4 +18,8 @@ public interface FoodLocationDAO extends JpaRepository<FoodLocationEntity,Intege
 		        +"WHERE address LIKE CONCAT('%',:address,'%')",
 		        nativeQuery=true)
    public int foodFindTotalPage(String address);
+   @Query(value="SELECT COUNT(*) FROM food_location "
+	        +"WHERE address LIKE CONCAT('%',:address,'%')",
+	        nativeQuery=true)
+   public int foodFindCount(String address);
 }

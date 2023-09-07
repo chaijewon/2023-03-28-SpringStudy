@@ -74,20 +74,16 @@ public class FoodRestController {
 	   List<FoodLocationEntity> list=ldao.foodFindData(address, start);
 	   return list;
    }
-   @GetMapping("food_page_react")
-   public PageVO food_page(String address,int page)
+   @GetMapping("food_totalpage_react")
+   public int food_page(String address)
    {
 	   int totalpage=ldao.foodFindTotalPage(address);
-	   final int BLOCK=5;
-	   int startPage=((page-1)/BLOCK*BLOCK)+1;
-	   int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
-	   if(endPage>totalpage)
-		   endPage=totalpage;
-	   PageVO vo=new PageVO();
-	   vo.setCurpage(page);
-	   vo.setEndPage(endPage);
-	   vo.setStartPage(startPage);
-	   vo.setTotalpage(totalpage);
-	   return vo;
+	   
+	   return totalpage;
+   }
+   @GetMapping("food_count_react")
+   public int food_count(String address)
+   {
+	   return ldao.foodFindCount(address);
    }
 }
